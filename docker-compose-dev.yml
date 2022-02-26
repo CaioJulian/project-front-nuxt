@@ -5,7 +5,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
-    entrypoint: sh -c "yarn install && yarn dev"
+    entrypoint: >
+      sh -c "cp .env.example .env &&
+      yarn install && yarn dev"
     ports:
       - 3000:3000
     volumes:

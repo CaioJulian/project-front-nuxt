@@ -1,6 +1,7 @@
 <template>
   <div class="bg-white">
     <nuxt />
+    <EditProductModal />
   </div>
 </template>
 

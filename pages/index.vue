@@ -1,6 +1,7 @@
 <template>
-  <main class="my-8">
+  <main class="py-10">
     <section>
+      <AddFileInput />
       <ListProducts />
     </section>
   </main>

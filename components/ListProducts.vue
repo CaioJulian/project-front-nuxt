@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col py-5">
     <div class="overflow-x-auto sm:mx-6 lg:mx-8">
       <table class="min-w-full border-collapse border-2 border-slate-400">
         <thead>
@@ -37,10 +37,12 @@
             <td class="border border-slate-300 px-2 whitespace-nowrap">
               <button
                 class="p-1 mr-1 mb-1 md:mb-0 rounded text-blue-700 hover:text-white hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                type="button"
               >
                 Edit</button
               ><button
                 class="p-1 rounded text-red-800 hover:text-white hover:bg-red-700 focus:outline-none focus:bg-blue-700"
+                type="button"
               >
                 Delete
               </button>

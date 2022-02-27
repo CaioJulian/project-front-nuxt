@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="container m-auto p-3 bg-white">
     <nuxt />
     <EditProductModal />
   </div>
@@ -10,5 +10,3 @@ export default {
   name: 'IndexPage',
 }
 </script>
-
-<style lang="scss" scoped></style>

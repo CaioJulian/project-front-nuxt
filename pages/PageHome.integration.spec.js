@@ -4,7 +4,9 @@ import axios from 'axios'
 import PageHome from '.'
 import AddFileInput from '@/components/AddFileInput.vue'
 import ListProducts from '@/components/ListProducts.vue'
-import { state, actions, mutations } from '@/store/productManager.js'
+import AlertMessage from '@/components/AlertMessage.vue'
+import * as managerProduct from '@/store/productManager.js'
+import * as managerStatus from '@/store/statusManager.js'
 
 jest.mock('axios')
 
@@ -12,19 +14,23 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('PageHome - integration', () => {
-  let store, productManager, products
+  let store, productManager, statusManager, products
 
   beforeEach(() => {
     productManager = {
       namespaced: true,
-      state,
-      actions,
-      mutations,
+      ...managerProduct,
+    }
+
+    statusManager = {
+      namespaced: true,
+      ...managerStatus,
     }
 
     store = new Store({
       modules: {
         productManager,
+        statusManager,
       },
     })
 
@@ -56,6 +62,7 @@ describe('PageHome - integration', () => {
       stubs: {
         AddFileInput,
         ListProducts,
+        AlertMessage,
       },
     })
 
@@ -92,6 +99,6 @@ describe('PageHome - integration', () => {
 
     expect(axios.get).toHaveBeenCalledTimes(1)
     expect(axios.get).toHaveBeenCalledWith('/products')
-    expect(store.state.productManager).toEqual({ products })
+    expect(store.state.productManager.products).toEqual(products)
   })
 })

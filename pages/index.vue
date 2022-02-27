@@ -1,6 +1,7 @@
 <template>
   <main class="py-10">
     <section>
+      <AlertMessage />
       <AddFileInput />
       <ListProducts />
     </section>

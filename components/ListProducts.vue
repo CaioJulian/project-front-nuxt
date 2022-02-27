@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col py-5">
-    <div class="overflow-x-auto sm:mx-6 lg:mx-8">
+    <div class="overflow-x-auto">
       <table class="min-w-full border-collapse border-2 border-slate-400">
         <thead>
           <tr>
@@ -26,7 +26,7 @@
               {{ item.type }}
             </td>
             <td class="border border-slate-300 px-2 whitespace-nowrap">
-              {{ item.rating }}
+              {{ ratingLabel(item.rating) }}
             </td>
             <td class="border border-slate-300 px-2 whitespace-nowrap">
               R$ {{ item.price }}
@@ -38,6 +38,7 @@
               <button
                 class="p-1 mr-1 mb-1 md:mb-0 rounded text-blue-700 hover:text-white hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 type="button"
+                @click="openModal(item)"
               >
                 Edit</button
               ><button
@@ -64,6 +65,16 @@ export default {
   computed: {
     products() {
       return this.$store.state.productManager.products
+    },
+  },
+  methods: {
+    openModal(product) {
+      this.$store.commit('statusManager/openModal')
+      this.$store.commit('productManager/setProduct', product)
+    },
+
+    ratingLabel(label) {
+      return !!label === true ? label : '-'
     },
   },
 }

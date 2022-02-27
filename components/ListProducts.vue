@@ -32,7 +32,7 @@
               R$ {{ item.price }}
             </td>
             <td class="border border-slate-300 px-2 whitespace-nowrap">
-              {{ item.created }}
+              {{ item.created_at }}
             </td>
             <td class="border border-slate-300 px-2 whitespace-nowrap">
               <button
@@ -59,25 +59,12 @@ export default {
   data() {
     return {
       titles: ['Title', 'Type', 'Rating', 'Price', 'Created', 'Actions'],
-      products: [
-        {
-          title: 'Brown eggs',
-          type: 'dairy',
-          rating: 4,
-          price: 28.1,
-          created: '01/01/2022',
-        },
-        {
-          title: 'Sweet fresh stawberry',
-          type: 'fruit',
-          rating: 3,
-          price: 29.45,
-          created: '01/01/2022',
-        },
-      ],
     }
+  },
+  computed: {
+    products() {
+      return this.$store.state.productManager.products
+    },
   },
 }
 </script>
-
-<style lang="scss" scoped></style>

@@ -14,4 +14,10 @@ export const actions = {
 
     commit('setProducts', data)
   },
+
+  async addProduct({ dispatch }, payload) {
+    await this.$axios.post('/products', payload)
+
+    dispatch('fetchProducts')
+  },
 }

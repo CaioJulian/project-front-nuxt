@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center p-5">
-    <form @submit.prevent="">
+    <form @submit.prevent="handleSubmit">
       <label for="formFile" class="form-label inline-block mb-2 text-gray-700"
         >Anexar arquivo .json</label
       >
@@ -9,6 +9,8 @@
         class="px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded cursor-pointer"
         type="file"
         accept="application/JSON"
+        required
+        @change="updateFile"
       />
 
       <button
@@ -22,7 +24,38 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      product: {},
+    }
+  },
+  methods: {
+    updateFile(e) {
+      const file = e.target.files || e.dataTransfer.files
+      if (!file.length) {
+        return
+      }
+
+      const reader = new FileReader()
+      reader.onloadend = (e) => {
+        this.decodeFile(e.target.result)
+      }
+      reader.readAsDataURL(file[0])
+    },
+
+    decodeFile(dataURI) {
+      // 29 = length of "data:application/json;base64,"
+      const json = Buffer.from(dataURI.substring(29), 'base64').toString()
+      const result = JSON.parse(json)
+      this.product = result
+    },
+
+    handleSubmit() {
+      this.$store.dispatch('productManager/addProduct', this.product)
+    },
+  },
+}
 </script>
 <style lang="postcss" scoped>
 input[type='file']::file-selector-button {

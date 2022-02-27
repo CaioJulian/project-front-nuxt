@@ -1,7 +1,6 @@
 import { mount, createLocalVue } from '@vue/test-utils'
 import Vuex, { Store } from 'vuex'
 import ListProducts from '@/components/ListProducts.vue'
-
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
@@ -17,7 +16,7 @@ describe('ListProducts', () => {
         created_at: '01/01/2022',
       },
       {
-        title: 'Sweet fresh stawberry',
+        title: 'Sweet fresh strawberry',
         type: 'fruit',
         rating: 3,
         price: 29.45,

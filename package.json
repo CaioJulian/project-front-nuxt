@@ -12,11 +12,13 @@
     "lint": "yarn lint:js && yarn lint:prettier",
     "lintfix": "prettier --write --list-different . && yarn lint:js --fix",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage"
   },
   "lint-staged": {
     "*.{js,vue}": "eslint --cache",
-    "*.**": "prettier --check --ignore-unknown"
+    "*.**": "prettier --write --ignore-unknown"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",

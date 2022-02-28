@@ -5,6 +5,7 @@ export const state = () => ({
     type: 'success',
   },
   modalOpen: false,
+  modalDeleteOpen: false,
 })
 
 export const mutations = {
@@ -14,6 +15,14 @@ export const mutations = {
 
   closeModal(state) {
     state.modalOpen = false
+  },
+
+  openDeleteModal(state) {
+    state.modalDeleteOpen = true
+  },
+
+  closeDeleteModal(state) {
+    state.modalDeleteOpen = false
   },
 
   openAlert(state) {

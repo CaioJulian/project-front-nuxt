@@ -36,14 +36,17 @@
             </td>
             <td class="border border-slate-300 px-2 whitespace-nowrap">
               <button
+                data-testid="edit-product-button"
                 class="p-1 mr-1 mb-1 md:mb-0 rounded text-blue-700 hover:text-white hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 type="button"
                 @click="openModal(item)"
               >
                 Edit</button
               ><button
-                class="p-1 rounded text-red-800 hover:text-white hover:bg-red-700 focus:outline-none focus:bg-blue-700"
+                data-testid="delete-product-button"
+                class="p-1 rounded text-red-800 hover:text-white hover:bg-red-700 focus:outline-none focus:bg-red-700"
                 type="button"
+                @click="openDeleteModal(item)"
               >
                 Delete
               </button>
@@ -68,9 +71,18 @@ export default {
     },
   },
   methods: {
+    setProduct(product) {
+      this.$store.commit('productManager/setProduct', product)
+    },
+
     openModal(product) {
       this.$store.commit('statusManager/openModal')
-      this.$store.commit('productManager/setProduct', product)
+      this.setProduct(product)
+    },
+
+    openDeleteModal(product) {
+      this.$store.commit('statusManager/openDeleteModal')
+      this.setProduct(product)
     },
 
     ratingLabel(label) {

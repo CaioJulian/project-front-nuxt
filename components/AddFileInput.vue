@@ -2,7 +2,7 @@
   <div class="flex justify-center p-5">
     <form @submit.prevent="handleSubmit">
       <label for="formFile" class="form-label inline-block mb-2 text-gray-700"
-        >Anexar arquivo .json</label
+        >Append file .json</label
       >
       <input
         id="formFile"
@@ -14,10 +14,11 @@
       />
 
       <button
+        data-testid="send-file"
         type="submit"
         class="px-6 py-2.5 m-1 bg-blue-600 text-white font-medium rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
       >
-        Enviar
+        Send
       </button>
     </form>
   </div>

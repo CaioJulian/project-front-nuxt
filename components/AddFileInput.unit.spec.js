@@ -37,18 +37,18 @@ describe('AddFileInput', () => {
     return { wrapper }
   }
 
-  test('should mount the component', () => {
+  it('should mount the component', () => {
     const { wrapper } = mountAddFileInput()
 
     expect(wrapper.vm).toBeTruthy()
     expect(wrapper.text()).toContain('Anexar arquivo .json')
   })
 
-  xit('should submit button', async () => {
+  it('should not submit button', async () => {
     const { wrapper } = mountAddFileInput()
 
-    await wrapper.find('form').trigger('submit')
+    await wrapper.find('[data-testid="send-file"]').trigger('submit')
 
-    expect(wrapper.emitted().handleSubmit).toBeTruthy()
+    expect(wrapper.emitted().handleSubmit).not.toBeTruthy()
   })
 })

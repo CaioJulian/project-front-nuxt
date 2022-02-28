@@ -84,4 +84,22 @@ export const actions = {
     commit('statusManager/openAlert', null, { root: true })
     commit('statusManager/closeModal', null, { root: true })
   },
+
+  async deleteProduct({ dispatch, commit, state }) {
+    const { product } = state
+    await this.$axios
+      .delete(`/products/${product.id}`, product)
+      .then((result) => {
+        const { message } = result.data
+        dispatch('fetchProducts')
+        commit(
+          'statusManager/setAlertMessage',
+          { message, type: 'success' },
+          { root: true }
+        )
+      })
+
+    commit('statusManager/openAlert', null, { root: true })
+    commit('statusManager/closeDeleteModal', null, { root: true })
+  },
 }

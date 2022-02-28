@@ -63,6 +63,11 @@ describe('productManager - unit', () => {
           data: { message: 'Product update with success!' },
         })
       )
+      axios.delete.mockReturnValue(
+        Promise.resolve({
+          data: { message: 'Product deleted with success!' },
+        })
+      )
     }
   }
 
@@ -169,6 +174,30 @@ describe('productManager - unit', () => {
     expect(store.state.statusManager.alertMessage.message).toEqual(
       err.data.message
     )
+  })
+
+  it('should return success when delete product', async () => {
+    const product = {
+      id: 1,
+      title: 'Brown eggs',
+      type: 'dairy',
+      description: 'Raw organic brown eggs in a basket',
+      price: 26.54,
+      rating: 3,
+    }
+
+    store.commit('setProduct', product)
+
+    const message = 'Product deleted with success!'
+
+    await store.dispatch('deleteProduct', product)
+
+    expect(axios.delete).toHaveBeenCalledWith(
+      `/products/${product.id}`,
+      product
+    )
+    expect(axios.get).toHaveBeenCalledWith('/products')
+    expect(store.state.statusManager.alertMessage.message).toEqual(message)
   })
 
   it('should handler product', () => {

@@ -1,7 +1,8 @@
 <template>
-  <div class="container m-auto p-3 bg-white">
+  <div class="container xl:max-w-5xl m-auto p-3 bg-white">
     <nuxt />
     <EditProductModal />
+    <DeleteProductModal />
   </div>
 </template>
 

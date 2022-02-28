@@ -41,6 +41,19 @@ describe('statusManager - unit', () => {
     expect(store.state.alertOpen).toEqual(false)
   })
 
+  it('should return true modalDeleteOpen', () => {
+    store.commit('openDeleteModal')
+
+    expect(store.state.modalDeleteOpen).toEqual(true)
+  })
+
+  it('should return false modalDeleteOpen', () => {
+    store.commit('openDeleteModal')
+    store.commit('closeDeleteModal')
+
+    expect(store.state.modalDeleteOpen).toEqual(false)
+  })
+
   it('should return alert message', () => {
     const alertMessage = {
       message: 'Error in the send file!',

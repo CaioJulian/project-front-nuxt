@@ -41,7 +41,7 @@ describe('AddFileInput', () => {
     const { wrapper } = mountAddFileInput()
 
     expect(wrapper.vm).toBeTruthy()
-    expect(wrapper.text()).toContain('Anexar arquivo .json')
+    expect(wrapper.text()).toContain('Append file .json')
   })
 
   it('should not submit button', async () => {
